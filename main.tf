@@ -100,3 +100,11 @@ resource "aws_instance" "myec2" {
     Name = "${var.project_name}-instance"
   }
 }
+resource "aws_eip" "app_eip" {
+  instance = aws_instance.myec2.id
+  domain   = "vpc"
+
+  tags = {
+    Name = "${var.project_name}-eip"
+  }
+}
